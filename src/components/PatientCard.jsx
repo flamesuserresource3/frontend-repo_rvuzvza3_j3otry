@@ -26,10 +26,11 @@ export default function PatientCard({ patient, symptoms, onAddSymptom, onSetComp
   };
 
   return (
-    <aside className="w-full sm:w-80 shrink-0 space-y-4">
-      <div className="rounded-xl border bg-white p-4">
+    <aside className="w-full shrink-0 space-y-4 sm:w-80">
+      {/* Patient summary */}
+      <div className="rounded-xl border bg-white p-4 shadow-sm">
         <div className="flex items-center gap-3">
-          <div className="size-10 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
+          <div className="flex size-10 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
             <HeartPulse className="size-5" />
           </div>
           <div>
@@ -45,20 +46,21 @@ export default function PatientCard({ patient, symptoms, onAddSymptom, onSetComp
         </div>
       </div>
 
-      <div className="rounded-xl border bg-white p-4">
+      {/* Chief complaint */}
+      <div className="rounded-xl border bg-white p-4 shadow-sm">
         <div className="flex items-center justify-between">
           <h3 className="font-medium">Chief complaint</h3>
         </div>
-        <form onSubmit={handleComplaintSubmit} className="mt-3 flex gap-2">
+        <form onSubmit={handleComplaintSubmit} className="mt-3 flex flex-col gap-2 sm:flex-row">
           <input
             value={complaint}
             onChange={(e) => setComplaint(e.target.value)}
             placeholder="Describe the issue"
-            className="flex-1 rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full flex-1 rounded-lg border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <button
             type="submit"
-            className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:bg-blue-700"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-3 py-2 text-sm font-medium text-white hover:bg-blue-700 sm:w-auto"
           >
             <Plus className="size-4" />
             Add
@@ -66,7 +68,8 @@ export default function PatientCard({ patient, symptoms, onAddSymptom, onSetComp
         </form>
       </div>
 
-      <div className="rounded-xl border bg-white p-4">
+      {/* Quick symptoms */}
+      <div className="rounded-xl border bg-white p-4 shadow-sm">
         <h3 className="font-medium">Quick add symptoms</h3>
         <div className="mt-3 grid grid-cols-2 gap-2">
           {COMMON_SYMPTOMS.map(({ label, icon: Icon }) => (
@@ -86,7 +89,10 @@ export default function PatientCard({ patient, symptoms, onAddSymptom, onSetComp
             <div className="text-xs font-medium text-gray-500">Selected</div>
             <div className="mt-2 flex flex-wrap gap-2">
               {symptoms.map((s) => (
-                <span key={s} className="inline-flex items-center rounded-full bg-blue-50 px-2.5 py-1 text-xs text-blue-700 border border-blue-200">
+                <span
+                  key={s}
+                  className="inline-flex items-center rounded-full border border-blue-200 bg-blue-50 px-2.5 py-1 text-xs text-blue-700"
+                >
                   {s}
                 </span>
               ))}
